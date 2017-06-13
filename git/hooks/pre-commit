@@ -1,0 +1,2 @@
+#!/bin/sh
+.ide/git/hooks/bin/pre-commit

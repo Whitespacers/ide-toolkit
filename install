@@ -1,0 +1,33 @@
+#!/bin/sh
+echo 'Installing IDE file kit...';
+
+echo '\nInstall Git hooks? (y/n)?'
+read githooks
+
+dir=$(cd -P -- "$(dirname -- "$0")")
+
+# (re)init npm
+npm init -y
+
+# install base linters
+npm i stylelint eslint -D
+
+# run package modifier
+node .ide/.bin/install.js
+
+# add symlinks
+ln -s .ide/.eslintrc.js .eslintrc.js
+ln -s .ide/.csslintrc .csslintrc
+ln -s .ide/.jshintrc .jshintrc
+ln -s .ide/stylelint.config.js stylelint.config.js
+
+# add git hooks
+if echo "$githooks" | grep -iq "^y" ;then
+	if [ -f .git/hooks/pre-commit ]; then
+		mv .git/hooks/pre-commit .git/hooks/pre-commit.before-ide
+	fi
+
+	cp .ide/git/hooks/pre-commit .git/hooks/
+fi
+
+echo 'IDE file installation complete. Happy developing!'
