@@ -3,7 +3,7 @@ Installation
 Use git submodules to add the repository to your local project:
 
 ```
-git submodule add ssh://git@git.whitespacers.com/home/git/projects/development/whitespace_dev_env.git .ide
+git submodule add https://github.com/Whitespacers/ide-toolkit.git .ide
 ```
 
 Then run:
