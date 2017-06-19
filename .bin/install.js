@@ -9,9 +9,15 @@ const path = require('path'),
 function makeJSON() {
 	let json;
 
-	const package_file = path.resolve('./package.json');
+	const package_file = path.resolve('./package.json'),
+		scripts = {
+			lint: 'eslint -c .ide/.eslintrc.js src/js',
+			'lint-css': 'stylelint \"src/scss/**/*.*\" --config ./stylelint.config.js'
+		};
 
 	fs.readFile(package_file, function(error, data) {
+		let key;
+
 		if (error) throw error;
 
 		if ((json = JSON.parse(data))) {
@@ -19,17 +25,26 @@ function makeJSON() {
 				json.scripts = {};
 			}
 
-			if (!json.scripts.lint) {
-				json.scripts.lint = 'eslint -c .ide/.eslintrc.js src/js';
-			}
-
-			if (!json.scripts['lint-css']) {
-				json.scripts['lint-css'] = 'stylelint \"src/scss/**/*.*\" --config ./stylelint.config.js';
+			for (key in scripts) {
+				if (scripts.hasOwnProperty(key)) {
+					if (!json.scripts[key]) {
+						json.scripts[key] = scripts[key];
+					} else {
+						process.stdout.write(
+							`NPM Script "${key}" could not be added automatically. If you would like to add` +
+							` this under a different name, the command is: "${scripts[key]}".\n`
+						);
+					}
+				}
 			}
 
 			// ensure author/license are set
 			json.author = 'Whitespace (Scotland), Ltd';
-			json.license = 'UNLICENSED';
+
+			if (!json.license || json.license === 'ISC') {
+				// license not set or default NPM init license
+				json.license = 'UNLICENSED';
+			}
 
 			fs.writeFile(package_file, JSON.stringify(json, null, '  '));
 
