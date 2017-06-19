@@ -4,6 +4,13 @@ echo 'Installing IDE file kit...';
 echo '\nInstall Git hooks? (y/n)?'
 read githooks
 
+if echo "$githooks" | grep -iq "^y"; then
+	if [ ! -f .git ]; then
+		echo 'Git has not been initialised for this path. Please run git init before running this script.'
+		exit 1;
+	fi
+fi
+
 dir=$(cd -P -- "$(dirname -- "$0")")
 
 # (re)init npm
@@ -24,6 +31,7 @@ ln -s .ide/stylelint.config.js stylelint.config.js
 # add git hooks
 if echo "$githooks" | grep -iq "^y" ;then
 	if [ -f .git/hooks/pre-commit ]; then
+		# back-up current pre-commit
 		mv .git/hooks/pre-commit .git/hooks/pre-commit.before-ide
 	fi
 
