@@ -5,7 +5,7 @@ echo '\nInstall Git hooks? (y/n)?'
 read githooks
 
 if echo "$githooks" | grep -iq "^y"; then
-	if [ ! -f .git ]; then
+	if [ ! -d .git ]; then
 		echo 'Git has not been initialised for this path. Please run git init before running this script.'
 		exit 1;
 	fi
