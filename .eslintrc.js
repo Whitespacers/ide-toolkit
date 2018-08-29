@@ -1,9 +1,6 @@
 module.exports = {
 	'extends': ['eslint:recommended'],
 	'parserOptions': {
-		'ecmaFeatures': {
-			'experimentalObjectRestSpread': true
-		},
 		'sourceType': 'module'
 	},
 	'env': {
@@ -27,6 +24,8 @@ module.exports = {
 		'no-with': 'error',
 		'radix': 'error',
 		'vars-on-top': 'error',
+		'keyword-spacing': ['error', {'after': true, 'before': true}],
+		'space-before-blocks': ['error', 'always'],
 
 		// misc
 		'max-statements': ['error', 50],
@@ -34,13 +33,14 @@ module.exports = {
 		// warn styles
 		'array-bracket-spacing': ['warn', 'never'],
 		'brace-style': ['warn', '1tbs', {
-			'allowSingleLine': true
+			'allowSingleLine': false
 		}],
 		'comma-dangle': ['warn', 'never'],
 		'comma-spacing': ['warn', {
 			'before': false,
 			'after': true
 		}],
+		'curly': ['warn', 'all'],
 
 		// error styles
 		'no-trailing-spaces': 'error',
