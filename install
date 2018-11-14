@@ -17,7 +17,7 @@ dir=$(cd -P -- "$(dirname -- "$0")")
 npm init -y
 
 # install base linters
-npm i stylelint eslint eslint-plugin-react -D
+npm i stylelint eslint eslint-plugin-react babel-eslint -D
 
 # run package modifier
 node .ide/.bin/install.js
