@@ -1,7 +1,7 @@
 #!/bin/sh
 echo 'Installing IDE file kit...';
 
-echo '\nInstall Git hooks? (y/n)?'
+echo '\nInstall optional Git hooks to require code quality before commit? (y/n): '
 read githooks
 
 if echo "$githooks" | grep -iq "^y"; then
@@ -13,11 +13,14 @@ fi
 
 dir=$(cd -P -- "$(dirname -- "$0")")
 
-# (re)init npm
+# instal within .ide
+npm install --prefix ./.ide
+
+# (re)init npm within the project
 npm init -y
 
-# install base linters
-npm i stylelint eslint -D
+# install project linters and utils
+npm install stylelint eslint -D
 
 # run package modifier
 node .ide/.bin/install.js

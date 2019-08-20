@@ -1,0 +1,2 @@
+#!/bin/sh
+node .ide/.bin/version.js $1

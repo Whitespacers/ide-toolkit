@@ -11,8 +11,8 @@ function makeJSON() {
 
 	const package_file = path.resolve('./package.json'),
 		scripts = {
-			lint: 'eslint -c .ide/.eslintrc.js src/js',
-			'lint-css': 'stylelint \"src/scss/**/*.*\" --config ./stylelint.config.js'
+			lint: '.ide/version 8 && eslint -c .ide/.eslintrc.js src/js',
+			'lint-css': '.ide/version 8 && stylelint \"src/scss/**/*.*\" --config ./stylelint.config.js'
 		};
 
 	fs.readFile(package_file, function(error, data) {
