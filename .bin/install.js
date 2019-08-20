@@ -46,7 +46,7 @@ function makeJSON() {
 				json.license = 'UNLICENSED';
 			}
 
-			fs.writeFile(package_file, JSON.stringify(json, null, '  '));
+			fs.writeFileSync(package_file, JSON.stringify(json, null, '  '));
 
 			process.stdout.write('Package file updated. Please ensure the paths for "lint" and "lint-css" are correct.\n');
 		} else {
