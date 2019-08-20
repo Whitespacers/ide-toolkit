@@ -1,8 +1,13 @@
 module.exports = {
-	'extends': ['eslint:recommended'],
+	'extends': ['eslint:recommended', 'plugin:react/recommended'],
+	'parser': 'babel-eslint',
 	'parserOptions': {
-		'sourceType': 'module'
+		'sourceType': 'module',
+		'ecmaFeatures': {
+			'jsx': true
+		}
 	},
+	'plugins': ['react'],
 	'env': {
 		'browser': true,
 		'node': true,
@@ -24,7 +29,7 @@ module.exports = {
 		'no-with': 'error',
 		'radix': 'error',
 		'vars-on-top': 'error',
-		'keyword-spacing': ['error', {'after': true, 'before': true}],
+		'keyword-spacing': ['error', { 'after': true, 'before': true }],
 		'space-before-blocks': ['error', 'always'],
 
 		// misc
@@ -32,14 +37,21 @@ module.exports = {
 
 		// warn styles
 		'array-bracket-spacing': ['warn', 'never'],
-		'brace-style': ['warn', '1tbs', {
-			'allowSingleLine': false
-		}],
+		'brace-style': [
+			'warn',
+			'1tbs',
+			{
+				'allowSingleLine': false
+			}
+		],
 		'comma-dangle': ['warn', 'never'],
-		'comma-spacing': ['warn', {
-			'before': false,
-			'after': true
-		}],
+		'comma-spacing': [
+			'warn',
+			{
+				'before': false,
+				'after': true
+			}
+		],
 		'curly': ['warn', 'all'],
 
 		// error styles

@@ -19,8 +19,8 @@ npm install --prefix ./.ide
 # (re)init npm within the project
 npm init -y
 
-# install project linters and utils
-npm install stylelint eslint -D
+# install base linters
+npm i stylelint eslint eslint-plugin-react babel-eslint -D
 
 # run package modifier
 node .ide/.bin/install.js
