@@ -103,5 +103,15 @@ Running with the required version:
 (building...)
 ```
 
+`version` can also be used with ranges or operators, for instance:
+
+Running with a node version newer than required:
+```
+# Enforce max version 6 of node and run build script
+> .ide/version "<=6" && npm run build
+
+The available node version (v6.11.2) is not satisfied by the required version (<=6.0.0). Please check your node version and if necessary install and use NVM to update it before running node scripts within this repository.
+```
+
 ### jshint & csslint (sort-of deprecated)
 There are also `.*rc` files for the two linters we use on [wslint](http://dev.development.whitespacers.com/wslint/), but this method of linting is being deprecated in favour of local linting and pre-commit checks. Feel free to use them in the interim with whatever IDE you prefer.
